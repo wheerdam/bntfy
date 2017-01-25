@@ -302,7 +302,7 @@ public class Notify {
         }
     }    
     
-    private static Notify create(Config config) {
+    public static Notify create(Config config) {
         if(config == null) {
             config = new Config(); // make dummy
         }

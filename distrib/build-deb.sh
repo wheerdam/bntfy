@@ -21,6 +21,7 @@ mkdir ./deb/usr/lib
 mkdir ./deb/usr/lib/bntfy
 cp -v ../dist/org.bbi.Notify.jar ./deb/usr/lib/bntfy/bntfy.jar
 cp -v bntfy-vol.sh ./deb/usr/bin
+cp -v bntfy-vol-pulse.sh ./deb/usr/bin
 cp -v sample.conf ./deb/etc/bntfy.conf
 echo "- generating run script"
 echo "#!/bin/sh" > ./deb/usr/bin/bntfy

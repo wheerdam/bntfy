@@ -97,7 +97,7 @@ public class Config {
                     continue;
                 }
                 tokens = l.split("#");
-                tokens = tokens[0].split("=");
+                tokens = tokens[0].split("=", 2);
                 Log.d(3, this + ".parse: [" + sectionName + "] " +  tokens[0] +
                         "=" + (tokens.length > 1 ? tokens[1] : ""));
                 curSection.put(tokens[0], tokens.length > 1 ? tokens[1].trim() : null);
