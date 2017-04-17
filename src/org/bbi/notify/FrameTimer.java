@@ -39,6 +39,7 @@ public class FrameTimer extends Thread {
     }
     
     public void timestamp(boolean autohide) {
+        Log.d(1, "FrameTimer: timestamp");
         frameDisplayTime = System.currentTimeMillis();
         this.autohide = autohide;
         
@@ -51,6 +52,14 @@ public class FrameTimer extends Thread {
     public void setRefreshTime(long timeMs) {
         this.delayTime = timeMs;
     }
+    
+    public long getAutohideInterval() {
+        return this.autohideInterval;
+    }
+    
+    public long getRefreshTime() {
+        return this.delayTime;
+    }
 
     @Override
     public void run() {
@@ -61,8 +70,11 @@ public class FrameTimer extends Thread {
             if(autohide && frame.isVisible() && autohideInterval > 0 &&
                     startTime - frameDisplayTime > autohideInterval) {
                 frame.setVisible(false);
+                stop = true;
             } else if(frame.isVisible()) {
                 frame.updateView();
+            } else if(!frame.isVisible()) {
+                stop = true;
             }
             
             timeUsed = System.currentTimeMillis() - startTime;

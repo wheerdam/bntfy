@@ -46,7 +46,7 @@ public class Notify {
     
     private SocketListener socket;
     private UDPSocketListener socketUDP;
-    private final FrameTimer timer;
+    private FrameTimer timer;
     private final NotifyFrame frame;
     private TrayIcon trayIcon;
     private final boolean system;
@@ -581,10 +581,16 @@ public class Notify {
             }
             frame.setFocusableWindowState(false);
             frame.setVisible(true);
+            timer = new FrameTimer(frame, timer.getRefreshTime(), 
+                                          timer.getAutohideInterval());
+            timer.start();
+            timer.timestamp(autohide);
             return;
         }
         
         if(!frame.isVisible()) {
+            timer = new FrameTimer(frame, timer.getRefreshTime(), 
+                                          timer.getAutohideInterval());
             GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
             
             if(screenIndex >= ge.getScreenDevices().length) {
@@ -666,6 +672,7 @@ public class Notify {
             
             // frame.setFocusableWindowState(false);
             frame.setVisible(true);
+            timer.start();
         }
     }
     
@@ -841,7 +848,6 @@ public class Notify {
         
         frame.pack();
         frame.setSize(frameWidth, frameHeight); 
-        timer.start();
     }
     
     public void stop() {
@@ -942,6 +948,7 @@ public class Notify {
                                     e.getY()-frameHeight-5
                             );
                         } else {
+                            timer.stopThread();
                             frame.setVisible(false);
                         }
                     } else if(e.getButton() == MouseEvent.BUTTON2) {
