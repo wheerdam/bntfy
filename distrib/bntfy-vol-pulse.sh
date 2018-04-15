@@ -9,7 +9,7 @@ PORT=25311
 #
 # channel to control
 #
-CHANNEL="0"
+CHANNEL=`pacmd list-sinks | grep index | awk '{print $3}'`
 
 #
 # additional commands to run to unmute sound

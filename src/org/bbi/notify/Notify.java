@@ -825,6 +825,11 @@ public class Notify {
                         float ratio = Float.parseFloat(tokens[1])/100;
                         AWTUtilities.setWindowOpacity(frame, ratio);
                     }
+                case "reinittray":
+                    {
+                        initTrayIcon();
+                        break;
+                    }
                 default:
                     break;
             }
@@ -879,6 +884,9 @@ public class Notify {
             if(trayWidth == -1 || trayHeight == -1) {
                 trayWidth = tray.getTrayIconSize().width;
                 trayHeight = tray.getTrayIconSize().height;
+            }
+            if(trayIcon != null) {
+                tray.remove(trayIcon);
             }
             trayIcon = new TrayIcon(createTrayIcon(0, "20bbff", 
                     trayWidth, trayHeight));
@@ -990,7 +998,7 @@ public class Notify {
         } catch(AWTException e) {
             Log.err("Unable to initialize system tray icon.");
         }        
-    }    
+    }
     
     public BufferedImage createTrayIcon(float ratio, String color,
             int w, int h) {
