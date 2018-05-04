@@ -1,2 +1,0 @@
-#!/bin/sh
-java -jar /usr/lib/bntfy/bntfy.jar -c /etc/bntfy.conf "$@"
