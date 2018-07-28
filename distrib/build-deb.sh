@@ -28,6 +28,7 @@ echo "#!/bin/sh" > ./deb/usr/bin/bntfy
 echo "java -jar /usr/lib/bntfy/bntfy.jar -c /etc/bntfy.conf \"\$@\"" >> ./deb/usr/bin/bntfy
 chmod a+x ./deb/usr/bin/bntfy
 chmod a+x ./deb/usr/bin/bntfy-vol.sh
+chmod a+x ./deb/usr/bin/bntfy-vol-pulse.sh
 echo "- building deb"
 fakeroot dpkg --build deb
 mv -v deb.deb bntfy.deb
