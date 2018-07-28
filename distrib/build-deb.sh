@@ -26,9 +26,10 @@ cp -v sample.conf ./deb/etc/bntfy.conf
 echo "- generating run script"
 echo "#!/bin/sh" > ./deb/usr/bin/bntfy
 echo "java -jar /usr/lib/bntfy/bntfy.jar -c /etc/bntfy.conf \"\$@\"" >> ./deb/usr/bin/bntfy
-chmod a+x ./deb/usr/bin/bntfy
-chmod a+x ./deb/usr/bin/bntfy-vol.sh
-chmod a+x ./deb/usr/bin/bntfy-vol-pulse.sh
+chmod a+r ./deb/etc/bntfy.conf
+chmod a+rx ./deb/usr/bin/bntfy
+chmod a+rx ./deb/usr/bin/bntfy-vol.sh
+chmod a+rx ./deb/usr/bin/bntfy-vol-pulse.sh
 echo "- building deb"
 fakeroot dpkg --build deb
 mv -v deb.deb bntfy.deb
